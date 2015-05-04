@@ -1,0 +1,15 @@
+{
+	"methods": [{
+		"name": "downloadFile",
+		"operationType": null,
+		"parameters": null,
+		"returnType": "java.lang.String"
+	}, {
+		"name": "generateXlsFile",
+		"operationType": null,
+		"parameters": null,
+		"returnType": null
+	}],
+	"serviceType": "JSON-RPC",
+	"serviceURL": "FileDownloader.json"
+}

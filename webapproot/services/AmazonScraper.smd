@@ -1,0 +1,48 @@
+{
+	"methods": [{
+		"name": "getProductFromAmazon",
+		"operationType": null,
+		"parameters": [{
+			"name": "product",
+			"type": "org.jsoup.nodes.Element"
+		}, {
+			"name": "category",
+			"type": "java.lang.String"
+		}],
+		"returnType": "com.soldoutazondb.data.Product"
+	}, {
+		"name": "parseAmazonCategory",
+		"operationType": null,
+		"parameters": [{
+			"name": "category",
+			"type": "java.lang.String"
+		}],
+		"returnType": null
+	}, {
+		"name": "parseAmazonCategoryObject",
+		"operationType": null,
+		"parameters": [{
+			"name": "category",
+			"type": "com.soldoutazondb.data.Category"
+		}],
+		"returnType": null
+	}, {
+		"name": "parseAmazonNode",
+		"operationType": null,
+		"parameters": [{
+			"name": "node",
+			"type": "com.soldoutazondb.data.Node"
+		}],
+		"returnType": "com.soldoutazondb.data.Node"
+	}, {
+		"name": "scrapeUrl",
+		"operationType": null,
+		"parameters": [{
+			"name": "node",
+			"type": "com.soldoutazondb.data.Node"
+		}],
+		"returnType": "java.lang.String"
+	}],
+	"serviceType": "JSON-RPC",
+	"serviceURL": "AmazonScraper.json"
+}

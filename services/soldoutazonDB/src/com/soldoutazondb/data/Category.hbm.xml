@@ -1,0 +1,36 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.soldoutazondb.data.Category" table="category" dynamic-insert="false" dynamic-update="false">
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="100"/>
+        </property>
+        <property name="started" type="string">
+            <column name="started" length="100"/>
+        </property>
+        <property name="completed" type="string">
+            <column name="completed" length="100"/>
+        </property>
+        <property name="prevcount" type="integer">
+            <column name="prevcount"/>
+        </property>
+        <property name="latestcount" type="integer">
+            <column name="latestcount"/>
+        </property>
+        <property name="productexistcount" type="integer">
+            <column name="productexistcount"/>
+        </property>
+        <property name="error" type="integer">
+            <column name="error"/>
+        </property>
+        <property name="search" type="integer">
+            <column name="search"/>
+        </property>
+        <property name="inconsistent" type="integer">
+            <column name="inconsistent"/>
+        </property>
+    </class>
+</hibernate-mapping>

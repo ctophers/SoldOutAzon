@@ -1,0 +1,37 @@
+{
+	"methods": [{
+		"name": "fetchLargeImage",
+		"operationType": null,
+		"parameters": [{
+			"name": "requestUrl",
+			"type": "java.lang.String"
+		}],
+		"returnType": "java.lang.String"
+	}, {
+		"name": "getAmazonItem",
+		"operationType": null,
+		"parameters": null,
+		"returnType": "webservice.AmazonWS.AmazonItem"
+	}, {
+		"name": "getImageFromAsin",
+		"operationType": null,
+		"parameters": [{
+			"name": "asin",
+			"type": "java.lang.String"
+		}],
+		"returnType": "java.lang.String"
+	}, {
+		"name": "itemSearch",
+		"operationType": null,
+		"parameters": [{
+			"name": "keywords",
+			"type": "java.lang.String"
+		}, {
+			"name": "page",
+			"type": "int"
+		}],
+		"returnType": "webservice.AmazonWS.AmazonSearchResults"
+	}],
+	"serviceType": "JSON-RPC",
+	"serviceURL": "AmazonWS.json"
+}

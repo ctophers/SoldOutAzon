@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" id="soldoutazonDB" class="com.soldoutazondb.SoldoutazonDB" CRUDService="true" type="DataService" springFile="soldoutazonDB.spring.xml">
+    <operation operationType="hqlquery" name="getCategory">
+        <return typeRef="com.soldoutazondb.data.output.GetCategoryRtnType" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="getConfigById">
+        <parameter name="id" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="com.soldoutazondb.data.Config" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="getProducts">
+        <parameter name="name" typeRef="java.lang.String" isList="false"/>
+        <parameter name="rank" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="category" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="com.soldoutazondb.data.Product" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="getNodesByCategoryName">
+        <parameter name="category" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="com.soldoutazondb.data.Node" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="updatePassword">
+        <parameter name="id" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="password" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="java.lang.Integer" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="getProductsCount">
+        <parameter name="name" typeRef="java.lang.String" isList="false"/>
+        <parameter name="rank" typeRef="java.lang.Integer" isList="false"/>
+        <parameter name="category" typeRef="java.lang.String" isList="false"/>
+        <return typeRef="com.soldoutazondb.data.output.GetProductsCountRtnType" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="getNodeById">
+        <parameter name="id" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="com.soldoutazondb.data.Node" isList="false"/>
+    </operation>
+    <operation operationType="hqlquery" name="getAllProducts">
+        <return typeRef="com.soldoutazondb.data.Product" isList="true"/>
+    </operation>
+    <operation operationType="hqlquery" name="updateUsername">
+        <parameter name="username" typeRef="java.lang.String" isList="false"/>
+        <parameter name="id" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="java.lang.Integer" isList="false"/>
+    </operation>
+    
+    <operation operationType="hqlquery" name="updateTimestamp">
+        <parameter name="id" typeRef="java.lang.Integer" isList="false"/>
+        <return typeRef="java.lang.Integer" isList="false"/>
+    </operation>
+    
+    <dataobjects>
+        <dataobject javaType="com.soldoutazondb.data.Category" supportsQuickData="true">
+            <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="name" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="started" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="completed" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="prevcount" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="latestcount" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="productexistcount" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="error" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="search" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="inconsistent" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.soldoutazondb.data.Config" supportsQuickData="true">
+            <element name="id" typeRef="java.lang.String" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element name="value" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.soldoutazondb.data.Node" supportsQuickData="true">
+            <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="category" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="subcategory" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="url" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="lastupdate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+            <element name="lastcount" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="errors" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="inconsistent" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="duplicate" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.soldoutazondb.data.Product" supportsQuickData="true">
+            <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="name" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="asin" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="rank" typeRef="java.lang.Integer" isList="false" allowNull="true"/>
+            <element name="category" typeRef="java.lang.String" isList="false" allowNull="true"/>
+            <element name="lastupdate" typeRef="java.util.Date" isList="false" allowNull="true"/>
+        </dataobject>
+        <dataobject javaType="com.soldoutazondb.data.System" supportsQuickData="true">
+            <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="flag" typeRef="java.lang.Boolean" isList="false" allowNull="false"/>
+            <element name="message" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.soldoutazondb.data.User" supportsQuickData="true">
+            <element name="id" typeRef="java.lang.Integer" isList="false" allowNull="false">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element name="username" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="password" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="role" typeRef="java.lang.String" isList="false" allowNull="false"/>
+            <element name="lastlogin" typeRef="java.util.Date" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.soldoutazondb.data.output.GetCategoryRtnType" supportsQuickData="false">
+            <element name="c0" typeRef="java.lang.String" isList="false" allowNull="false"/>
+        </dataobject>
+        <dataobject javaType="com.soldoutazondb.data.output.GetProductsCountRtnType" supportsQuickData="false">
+            <element name="searchCount" typeRef="java.lang.Long" isList="false" allowNull="false"/>
+        </dataobject>
+    </dataobjects>
+</service>

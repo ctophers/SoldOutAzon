@@ -1,0 +1,82 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <meta attribute="@design.default-queries"/>
+    <query name="getCategory">
+        SELECT DISTINCT n.category
+FROM Node n
+    </query>
+    <query name="getConfigById">
+        <query-param name="id" type="java.lang.String"/>
+        from Config where id = :id
+    </query>
+    <query name="getProducts">
+        <query-param name="name" type="java.lang.String"/>
+        <query-param name="rank" type="java.lang.Integer"/>
+        <query-param name="category" type="java.lang.String"/>
+        FROM Product
+WHERE
+( :name is null OR
+( lower (name) like (&apos;%&apos; || :name || &apos;%&apos;) )
+)
+AND
+(
+:rank is null OR
+(:rank &gt; rank AND rank is not null)
+)
+AND
+(
+:category is null OR
+(:category = category)
+)
+ORDER BY rank asc
+    </query>
+    <query name="getNodesByCategoryName">
+        <query-param name="category" type="java.lang.String"/>
+        from Node where category = :category
+    </query>
+    <query name="updatePassword">
+        <query-param name="id" type="java.lang.Integer"/>
+        <query-param name="password" type="java.lang.String"/>
+        UPDATE User
+SET password= :password
+WHERE id=:id
+    </query>
+    <query name="getProductsCount">
+        <query-param name="name" type="java.lang.String"/>
+        <query-param name="rank" type="java.lang.Integer"/>
+        <query-param name="category" type="java.lang.String"/>
+        select count(id) as searchCount
+FROM Product
+WHERE
+( :name is null OR
+( lower (name) like (&apos;%&apos; || :name || &apos;%&apos;) )
+)
+AND
+(
+:rank is null OR
+(:rank &gt; rank AND rank is not null)
+)
+AND
+(
+:category is null OR
+(:category = category)
+)
+    </query>
+    <query name="getAllProducts">
+        FROM Product
+    </query>
+    <query name="updateUsername">
+        <query-param name="username" type="java.lang.String"/>
+        <query-param name="id" type="java.lang.Integer"/>
+        UPDATE User
+SET username = :username
+WHERE id=:id
+    </query>
+    
+    <query name="updateTimestamp">
+        <query-param name="id" type="java.lang.Integer"/>
+        UPDATE User u
+SET u.lastlogin= now()
+WHERE u.id=:id
+    </query>
+</hibernate-mapping>

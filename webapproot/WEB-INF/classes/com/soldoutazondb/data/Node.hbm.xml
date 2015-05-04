@@ -1,0 +1,33 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.soldoutazondb.data.Node" table="node" dynamic-insert="false" dynamic-update="false">
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="category" type="string">
+            <column name="category" length="50"/>
+        </property>
+        <property name="subcategory" type="string">
+            <column name="subcategory" length="50"/>
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="200"/>
+        </property>
+        <property name="lastupdate" type="date">
+            <column name="lastupdate" length="10"/>
+        </property>
+        <property name="lastcount" type="integer">
+            <column name="lastcount"/>
+        </property>
+        <property name="errors" type="integer">
+            <column name="errors"/>
+        </property>
+        <property name="inconsistent" type="integer">
+            <column name="inconsistent"/>
+        </property>
+        <property name="duplicate" type="integer">
+            <column name="duplicate"/>
+        </property>
+    </class>
+</hibernate-mapping>

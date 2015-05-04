@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd" xmlns="http://www.springframework.org/schema/beans" xmlns:cloud="http://schema.cloudfoundry.org/spring" xmlns:security="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <security:global-method-security pre-post-annotations="enabled"/>
+    <security:http auto-config="false" entry-point-ref="WMSecAuthEntryPoint" use-expressions="true">
+        <security:custom-filter position="FORM_LOGIN_FILTER" ref="WMSecAuthFilter"/>
+        <security:intercept-url access="permitAll" pattern="/app.css"/>
+        <security:intercept-url access="permitAll" pattern="/config.js"/>
+        <security:intercept-url access="permitAll" pattern="/types.js"/>
+        <security:intercept-url access="permitAll" pattern="/login.html"/>
+        <security:intercept-url access="permitAll" pattern="/pages/login/**"/>
+        <security:intercept-url access="permitAll" pattern="/securityservice.json"/>
+        <security:intercept-url access="permitAll" pattern="/j_spring_security_check"/>
+        <security:intercept-url access="isAuthenticated()" pattern="/*.upload"/>
+        <security:intercept-url access="isAuthenticated()" pattern="/*.download"/>
+        <security:intercept-url access="isAuthenticated()" pattern="/index.html"/>
+        <security:intercept-url access="isAuthenticated()" pattern="/"/>
+        <security:intercept-url access="isAuthenticated()" pattern="/pages/**"/>
+        <security:intercept-url access="isAuthenticated()" pattern="/*.json"/>
+        <security:intercept-url access="isAuthenticated()" pattern="/*/*.json"/>
+    </security:http>
+    <bean class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter" id="WMSecAuthFilter">
+        <property name="authenticationSuccessHandler" ref="successHandler"/>
+        <property name="authenticationManager" ref="authenticationManagerDB"/>
+        <property name="filterProcessesUrl" value="/j_spring_security_check"/>
+    </bean>
+    <bean class="com.wavemaker.runtime.security.WMAuthenticationEntryPoint" id="WMSecAuthEntryPoint">
+        <property name="loginFormUrl" value="/login.html"/>
+    </bean>
+    <bean class="com.wavemaker.runtime.security.WMAuthenticationSuccessHandler" id="successHandler">
+        <property name="redirectStrategy" ref="hashAwareRedirectStrategy"/>
+    </bean>
+    <bean class="com.wavemaker.runtime.security.WMHashAwareRedirectStrategy" id="hashAwareRedirectStrategy"/>
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user authorities="ROLE_dummy" name="dummy" password="dummy"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+    <security:authentication-manager alias="authenticationManagerDemo" id="authenticationManagerDemo">
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user authorities="ROLE_admin" name="admin" password="admin"/>
+                <security:user authorities="ROLE_user" name="user" password="user"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+    <security:authentication-manager alias="authenticationManagerDB" id="authenticationManagerDB">
+        <security:authentication-provider user-service-ref="jdbcDaoImpl"/>
+    </security:authentication-manager>
+    <bean class="com.wavemaker.runtime.security.EnhancedJdbcDaoImpl" id="jdbcDaoImpl">
+        <property name="dataSource">
+            <ref bean="soldoutazonDBDataSource"/>
+        </property>
+        <property name="rolePrefix">
+            <value>ROLE_</value>
+        </property>
+        <property name="usersByUsernameQuery">
+            <value>SELECT id, password, 1, username FROM user WHERE username = ?</value>
+        </property>
+        <property name="authoritiesByUsernameQuery">
+            <value>SELECT id, role FROM user WHERE username = ?</value>
+        </property>
+        <property name="usernameBasedPrimaryKey">
+            <value>true</value>
+        </property>
+    </bean>
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" lazy-init="true" id="dummyDataSource"/>
+    <bean class="com.wavemaker.runtime.security.SecurityService" scope="singleton" id="securityService">
+        <property name="rolePrefix">
+            <value>ROLE_</value>
+        </property>
+        <property name="noRolesMarkerRole">
+            <value>DEFAULT_NO_ROLES</value>
+        </property>
+        <property name="roles">
+            <list>
+                <value>Admin</value>
+                <value>Member</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider" id="adAuthProvider">
+        <constructor-arg value="wavemaker.com"/>
+        <constructor-arg value="ldap://adserver.wavemaker.com/"/>
+        <property name="convertSubErrorCodesToExceptions" value="true"/>
+    </bean>
+    <security:authentication-manager alias="authenticationManagerAD" id="authenticationManagerAD">
+        <security:authentication-provider ref="adAuthProvider"/>
+    </security:authentication-manager>
+    <security:ldap-server url="ldap://localhost:389/dc=wavemaker,dc=vmware,dc=com"/>
+    <security:authentication-manager alias="authenticationManagerLDAP" id="authenticationManagerLDAP">
+        <security:ldap-authentication-provider role-prefix="ROLE_" user-search-filter="(cn={0})"/>
+    </security:authentication-manager>
+    <security:authentication-manager alias="authenticationManagerLDAPwithDB" id="authenticationManagerLDAPwithDB">
+        <security:authentication-provider ref="ldapAuthProvider"/>
+    </security:authentication-manager>
+    <bean class="org.springframework.security.ldap.DefaultSpringSecurityContextSource" id="contextSource">
+        <constructor-arg value="ldap://localhost:389/dc=wavemaker,dc=vmware,dc=com"/>
+    </bean>
+    <bean class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider" id="ldapAuthProvider">
+        <constructor-arg>
+            <bean class="org.springframework.security.ldap.authentication.BindAuthenticator">
+                <constructor-arg ref="contextSource"/>
+                <property name="userSearch">
+                    <bean class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch" id="userSearch">
+                        <constructor-arg index="0" value=""/>
+                        <constructor-arg index="1" value="(cn={0})"/>
+                        <constructor-arg index="2" ref="contextSource"/>
+                    </bean>
+                </property>
+            </bean>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="com.wavemaker.runtime.security.LdapAuthoritiesPopulator" id="LdapAuthoritiesPopulator">
+                <constructor-arg>
+                    <ref local="contextSource"/>
+                </constructor-arg>
+                <constructor-arg>
+                    <value>ou=Groups</value>
+                </constructor-arg>
+                <property name="groupSearchDisabled">
+                    <value>false</value>
+                </property>
+                <property name="groupRoleAttribute">
+                    <value>cn</value>
+                </property>
+                <property name="groupSearchFilter">
+                    <value>(uniqueMember={0})</value>
+                </property>
+                <property name="defaultRole">
+                    <value>ROLE_DEFAULT_NO_ROLES</value>
+                </property>
+                <property name="rolePrefix">
+                    <value>ROLE_</value>
+                </property>
+                <property name="convertToUpperCase">
+                    <value>false</value>
+                </property>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean class="com.wavemaker.runtime.security.WMSecurityConfigStore" id="WMSecurityConfigStore">
+        <property name="enforceSecurity">
+            <value>true</value>
+        </property>
+        <property name="enforceIndexHtml">
+            <value>true</value>
+        </property>
+    </bean>
+</beans>

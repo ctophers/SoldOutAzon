@@ -1,0 +1,15 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.soldoutazondb.data.System" table="system" dynamic-insert="false" dynamic-update="false">
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="flag" type="boolean">
+            <column name="flag" not-null="true"/>
+        </property>
+        <property name="message" type="string">
+            <column name="message" length="250" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

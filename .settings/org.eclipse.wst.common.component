@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SoldOutAzon">
+        <wb-resource deploy-path="/" source-path="/webapproot" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/services/AmazonScraper/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/services/AmazonWS/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/services/soldoutazonDB/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="context-root" value="SoldOutAzon"/>
+        <property name="java-output-path" value="/SoldOutAzon/webapproot/WEB-INF/classes"/>
+    </wb-module>
+</project-modules>

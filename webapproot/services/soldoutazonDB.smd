@@ -1,0 +1,97 @@
+{
+	"methods": [{
+		"name": "getAllProducts",
+		"operationType": "hqlquery",
+		"parameters": null,
+		"returnType": "[com.soldoutazondb.data.Product]"
+	}, {
+		"name": "getCategory",
+		"operationType": "hqlquery",
+		"parameters": null,
+		"returnType": "[com.soldoutazondb.data.output.GetCategoryRtnType]"
+	}, {
+		"name": "getConfigById",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "id",
+			"type": "java.lang.String"
+		}],
+		"returnType": "com.soldoutazondb.data.Config"
+	}, {
+		"name": "getNodeById",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "id",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "com.soldoutazondb.data.Node"
+	}, {
+		"name": "getNodesByCategoryName",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "category",
+			"type": "java.lang.String"
+		}],
+		"returnType": "[com.soldoutazondb.data.Node]"
+	}, {
+		"name": "getProducts",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "name",
+			"type": "java.lang.String"
+		}, {
+			"name": "rank",
+			"type": "java.lang.Integer"
+		}, {
+			"name": "category",
+			"type": "java.lang.String"
+		}],
+		"returnType": "[com.soldoutazondb.data.Product]"
+	}, {
+		"name": "getProductsCount",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "name",
+			"type": "java.lang.String"
+		}, {
+			"name": "rank",
+			"type": "java.lang.Integer"
+		}, {
+			"name": "category",
+			"type": "java.lang.String"
+		}],
+		"returnType": "com.soldoutazondb.data.output.GetProductsCountRtnType"
+	}, {
+		"name": "updatePassword",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "id",
+			"type": "java.lang.Integer"
+		}, {
+			"name": "password",
+			"type": "java.lang.String"
+		}],
+		"returnType": "java.lang.Integer"
+	}, {
+		"name": "updateTimestamp",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "id",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "java.lang.Integer"
+	}, {
+		"name": "updateUsername",
+		"operationType": "hqlquery",
+		"parameters": [{
+			"name": "username",
+			"type": "java.lang.String"
+		}, {
+			"name": "id",
+			"type": "java.lang.Integer"
+		}],
+		"returnType": "java.lang.Integer"
+	}],
+	"serviceType": "JSON-RPC",
+	"serviceURL": "soldoutazonDB.json"
+}

@@ -1,0 +1,36 @@
+@import "lib/wm/common/themes/coolblue/theme.css";
+
+body .wmeditor .EditorHelpIcon {
+    width: 22px;
+    height: 22px;
+    background-image: url("resources/images/help3.png");
+
+}
+
+html.WMApp body .dojogrid {
+
+}
+
+/*this will set the wrapping on the dojo grid header to per words */
+body .dojoxGridCell, .wmlist-cell {
+   word-wrap: normal;
+}
+
+
+/*
+html.WMApp body .dojogrid {
+overflow:auto;
+}
+
+html.WMApp body .dojogrid {
+white-space:normal;
+overflow:auto;
+}
+*/
+
+
+
+html.WMApp body .largeTextArea1 {
+overflow:hidden;
+}
+
