@@ -359,16 +359,6 @@ wm.types = {
 					"required": true,
 					"type": "java.lang.Integer"
 				},
-				"lastlogin": {
-					"exclude": [],
-					"fieldOrder": 4,
-					"fieldSubType": null,
-					"include": [],
-					"isList": false,
-					"noChange": [],
-					"required": true,
-					"type": "java.util.Date"
-				},
 				"password": {
 					"exclude": [],
 					"fieldOrder": 2,

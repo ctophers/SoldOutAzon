@@ -1,12 +1,11 @@
 
 package com.soldoutazondb.data;
 
-import java.util.Date;
 
 
 /**
  *  soldoutazonDB.User
- *  04/23/2015 09:33:13
+ *  05/04/2015 09:17:28
  * 
  */
 public class User {
@@ -15,7 +14,6 @@ public class User {
     private String username;
     private String password;
     private String role;
-    private Date lastlogin;
 
     public Integer getId() {
         return id;
@@ -47,14 +45,6 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public Date getLastlogin() {
-        return lastlogin;
-    }
-
-    public void setLastlogin(Date lastlogin) {
-        this.lastlogin = lastlogin;
     }
 
 }

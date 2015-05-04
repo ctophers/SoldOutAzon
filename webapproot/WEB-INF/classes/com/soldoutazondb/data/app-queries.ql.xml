@@ -72,11 +72,4 @@ AND
 SET username = :username
 WHERE id=:id
     </query>
-    
-    <query name="updateTimestamp">
-        <query-param name="id" type="java.lang.Integer"/>
-        UPDATE User u
-SET u.lastlogin= now()
-WHERE u.id=:id
-    </query>
 </hibernate-mapping>

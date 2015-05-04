@@ -13,7 +13,7 @@ dojo.declare("SoldOutAzon", wm.Application, {
 	"name": "", 
 	"phoneGapLoginPage": "Login", 
 	"phoneMain": "", 
-	"projectSubVersion": "Alpha95", 
+	"projectSubVersion": "Alpha97", 
 	"projectVersion": 1, 
 	"sessionExpirationHandler": "nothing", 
 	"studioVersion": "6.6.0M2", 

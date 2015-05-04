@@ -321,13 +321,6 @@ this.serviceAmazonItemSearch.update();
 console.error('ERROR IN LastWSClick: ' + e);
 }
 },
-loginVariable1Success: function(inSender, inDeprecated) {
-var currentTime = new Date();
-console.log('loginVariableSuccess ' + currentTime);
-this.updateTimestamp.input.setValue("id", 2);
-this.updateTimestamp.input.setValue("timestamp", currentTime);
-this.hqlServiceVar.update();
-},
 _end: 0
 });
 
@@ -374,7 +367,7 @@ SoldOutAzon: ["wm.Picture", {"aspect":"h","height":"110%","link":"http://soldout
 }],
 panel5: ["wm.Panel", {"height":"100%","horizontalAlign":"left","verticalAlign":"top","width":"100%"}, {}, {
 systemMessage: ["wm.Panel", {"height":"100%","horizontalAlign":"left","verticalAlign":"top","width":"100%"}, {}, {
-largeTextArea1: ["wm.LargeTextArea", {"_classes":{"domNode":["wm_TextDecoration_Bold","wm_FontColor_Red","wm_BackgroundColor_Yellow","wm_FontFamily_Arial","wm_FontSizePx_14px","largeTextArea1"]},"border":"2","borderColor":"#ff0000","captionPosition":"bottom","desktopHeight":"50px","displayValue":"05/01: We have updated the following categories: Home & Decor, Health & Personal Care, Power & Hand Tools.","height":"50px","margin":"2","padding":"4","readonly":true,"styles":{"whiteSpace":""},"width":"100%"}, {}, {
+largeTextArea1: ["wm.LargeTextArea", {"_classes":{"domNode":["wm_TextDecoration_Bold","wm_FontColor_Red","wm_BackgroundColor_Yellow","wm_FontFamily_Arial","wm_FontSizePx_14px","largeTextArea1"]},"border":"2","borderColor":"#ff0000","captionPosition":"bottom","desktopHeight":"50px","displayValue":"","height":"50px","margin":"2","padding":"4","readonly":true,"styles":{"whiteSpace":""},"width":"100%"}, {}, {
 binding: ["wm.Binding", {}, {}, {
 wire: ["wm.Wire", {"expression":undefined,"source":"app.liveVariableSystem.message","targetProperty":"dataValue"}, {}],
 wire1: ["wm.Wire", {"expression":undefined,"source":"app.liveVariableSystem.flag","targetProperty":"showing"}, {}]
@@ -523,7 +516,7 @@ wire: ["wm.Wire", {"expression":"(${serviceAmazonItemSearch.input.data.page} >= 
 UserProfileTab: ["wm.Layer", {"border":"1","borderColor":"#999999","caption":"User Profile","horizontalAlign":"left","themeStyleType":"ContentPanel","verticalAlign":"top"}, {}, {
 fancyPanel2: ["wm.FancyPanel", {"height":"143px","title":"User Information"}, {}, {
 spacer5: ["wm.Spacer", {"height":"14px","width":"331px"}, {}],
-text4: ["wm.Text", {"caption":"Username","captionSize":"200px","displayValue":"chris","readonly":true,"width":"400px"}, {}, {
+text4: ["wm.Text", {"caption":"Username","captionSize":"200px","displayValue":"","readonly":true,"width":"400px"}, {}, {
 binding: ["wm.Binding", {}, {}, {
 wire: ["wm.Wire", {"expression":undefined,"source":"app.usernameVar.dataValue","targetProperty":"dataValue"}, {}]
 }]

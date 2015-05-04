@@ -5,7 +5,7 @@ package com.soldoutazondb.data;
 
 /**
  *  soldoutazonDB.Category
- *  04/23/2015 09:33:13
+ *  05/04/2015 09:17:27
  * 
  */
 public class Category {

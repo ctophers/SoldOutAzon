@@ -15,7 +15,7 @@ import com.wavemaker.runtime.service.TypedServiceReturn;
 
 /**
  *  Operations for service "soldoutazonDB"
- *  04/29/2015 19:10:07
+ *  05/04/2015 09:17:36
  * 
  */
 @SuppressWarnings("unchecked")
@@ -80,15 +80,6 @@ public class SoldoutazonDB
 
     public Integer updateUsername(String username, Integer id, PagingOptions pagingOptions) {
         List<Integer> rtn = ((List<Integer> ) dsMgr.invoke(taskMgr.getQueryTask(), (SoldoutazonDBConstants.updateUsernameQueryName), username, id, pagingOptions));
-        if (rtn.isEmpty()) {
-            return null;
-        } else {
-            return rtn.get(0);
-        }
-    }
-
-    public Integer updateTimestamp(Integer id, PagingOptions pagingOptions) {
-        List<Integer> rtn = ((List<Integer> ) dsMgr.invoke(taskMgr.getQueryTask(), (SoldoutazonDBConstants.updateTimestampQueryName), id, pagingOptions));
         if (rtn.isEmpty()) {
             return null;
         } else {

@@ -4,7 +4,7 @@ package com.soldoutazondb.data.output;
 
 
 /**
- * Generated for query "getProductsCount" on 04/28/2015 17:50:21
+ * Generated for query "getProductsCount" on 05/04/2015 09:17:33
  * 
  */
 public class GetProductsCountRtnType {

@@ -367,14 +367,5 @@ dojo.declare("Main", wm.Page, {
       } 
   },
  
-    loginVariable1Success: function(inSender, inDeprecated) {
-    var currentTime = new Date();
-    console.log('loginVariableSuccess ' + currentTime);
-      this.updateTimestamp.input.setValue("id", 2);
-      this.updateTimestamp.input.setValue("timestamp", currentTime);
-      this.hqlServiceVar.update();
-      
-        
-    },
     _end: 0
 });

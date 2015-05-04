@@ -5,7 +5,7 @@ package com.soldoutazondb;
 
 /**
  *  Query names for service "soldoutazonDB"
- *  04/29/2015 19:10:07
+ *  05/04/2015 09:17:36
  * 
  */
 public class SoldoutazonDBConstants {
@@ -19,6 +19,5 @@ public class SoldoutazonDBConstants {
     public final static String getNodeByIdQueryName = "getNodeById";
     public final static String getAllProductsQueryName = "getAllProducts";
     public final static String updateUsernameQueryName = "updateUsername";
-    public final static String updateTimestampQueryName = "updateTimestamp";
 
 }
